@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run cypress:run 'cypress/integration/e2e/end_to_end.spec.ts'",
     "clean:reports": "rm -rf cypress/report/ && rm -rf cypress/videos/ && rm -rf cypress/screenshots/",
-    "cypress:run": "npm run clean:reports && npx cypress run --config-file cypress.json --spec",
+    "cypress:run": "npm run clean:reports && npx cypress run --config-file cypress.json ",
     "cypress:open": "cypress open",
     "lint": "npx eslint --ext .ts,.js .",
     "on-prem": "npm run cypress:run",
