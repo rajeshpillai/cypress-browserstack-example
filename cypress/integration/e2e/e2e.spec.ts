@@ -15,9 +15,12 @@ describe('e2e', function () {
   })
 
   it('Click on Sign In link', () => {
+    cy.intercept('GET', Cypress.config().baseUrl + '_next/static/chunks/pages/signin**').as('signinCheck')
 
     cy.visit('/');
     cy.get('#signin', { timeout: 30000 }).click();
+    cy.wait('@signinCheck', { timeout: 30000 });
+
   })
 
   it('Perform Login', function () {
@@ -26,7 +29,8 @@ describe('e2e', function () {
     cy.get('#password', { timeout: 30000 }).click({ force: true }).type(user.user4.password + '{enter}');
     cy.get('#login-btn', { timeout: 30000 }).click();
 
-    cy.url().should('include', 'bstackdemo.com/?signin=true') // => true
+    //cy.url().should('include', 'bstackdemo.com/?signin=true') // => true
+    cy.get("span.username").should("be.visible");
   })
 
 });
